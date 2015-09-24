@@ -1,5 +1,6 @@
 from robobrowser import RoboBrowser
 from robobrowser.forms.form import Form
+from getpass import getpass
 
 
 def scrape(browser, n):
@@ -28,7 +29,7 @@ def scrape_all():
     assert isinstance(form, Form)
 
     form["user"] = input("EZ Username: ")
-    form["passwrd"] = input("Password: ")
+    form["passwrd"] = getpass("Password: ")
 
     browser.submit_form(form)
 

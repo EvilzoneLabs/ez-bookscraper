@@ -3,6 +3,7 @@ import os
 from os.path import isfile
 from string import punctuation
 import requests
+from getpass import getpass
 
 from ThreadFinder import scrape_all
 
@@ -83,10 +84,10 @@ def generate():
 
 
 def password_wrapper():
-    if isfile("password"):
-        return tuple(open("password").read().split("\n")[:2])
-    else:
-        return (input("Username: "), input("Password: "))
+    '''Func to get password. Either from environment var or commandline
+       We never get it from a file as that storage is insecure.'''
+    return (os.environ.get('EVILUSER'), os.environ.get('EVILPASS') or\
+           (input("Username: "), getpass("Password: "))
 
 
 def post():
