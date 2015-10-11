@@ -5,7 +5,7 @@ from string import punctuation
 import requests
 from getpass import getpass
 
-from ThreadFinder import scrape_all
+from ThreadFinder import scrape_all, get_input
 
 
 class Category(object):
@@ -87,7 +87,7 @@ def password_wrapper():
     '''Func to get password. Either from environment var or commandline
        We never get it from a file as that storage is insecure.'''
     return (os.environ.get('EVILUSER'), os.environ.get('EVILPASS') or\
-           (input("Username: "), getpass("Password: "))
+           (get_input("Username for Evilzone Wiki: "), getpass("Password for Evilzone Wiki: "))
 
 
 def post():
